@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Boggle Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Boggle</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <table class="table table-bordered table-dark mb-4 boggle-board">
+                    {% for row in board %}
+                    <tr>
+                        {% for letter in row %}
+                        <td class="boggle-dice">{{ letter }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                <form id="guess-form" class="mb-4">
+                    <div class="form-group">
+                        <input type="text" id="guess-input" class="form-control" placeholder="Enter a word" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Check Word</button>
+                </form>
+                <p id="score">Score: 0</p>
+                <p id="timer">Time: 60</p>
+                <p id="message" class="text-danger"></p>
+                <ul id="words-list" class="list-group"></ul>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-6 text-center">
+                <p id="games-played">Games Played: 0</p>
+                <p id="high-score">High Score: 0</p>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
+
